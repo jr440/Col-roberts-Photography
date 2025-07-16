@@ -18,6 +18,7 @@
             font-family: 'Lato', sans-serif;
             color: white;
             background-color: #1a1a1a; /* Fallback color */
+            scroll-behavior: smooth;
         }
 
         /* --- Hero Section Container --- */
@@ -26,8 +27,7 @@
             width: 100%;
             
             /* --- IMPORTANT: Replace this with your image --- */
-            background-image: url('https://images.unsplash.com/photo-1572979244242-b5e8995a563f?q=80&w=2070&auto=format&fit=crop'); 
-            
+            background-image: url('images/hero.jpg'); /* Update this path once you add your image */
             background-size: cover;
             background-position: center;
             background-attachment: fixed; /* Creates a nice parallax-like effect on scroll */
@@ -51,7 +51,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.3); /* Adjust darkness (0.3 = 30% black) */
+            background: rgba(0, 0, 0, 0.4); /* Slightly darker overlay for better text readability */
         }
 
         /* --- Top Navigation --- */
@@ -65,8 +65,14 @@
             justify-content: space-between;
             align-items: center;
             z-index: 2;
+            transition: background-color 0.3s ease;
         }
 
+        /* Add this class to nav when scrolling for better visibility */
+        .nav-scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
         .nav-logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
@@ -74,7 +80,6 @@
             text-decoration: none;
             color: white;
         }
-
         .nav-links ul {
             margin: 0;
             padding: 0;
@@ -92,10 +97,26 @@
             font-size: 16px;
             font-weight: 300;
             transition: opacity 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
             opacity: 0.7;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         /* --- Centered Content --- */
@@ -103,6 +124,7 @@
             position: relative; /* Ensures it appears above the overlay */
             z-index: 1;
             padding: 20px;
+            max-width: 800px;
         }
 
         h1 {
@@ -143,12 +165,14 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             background-color: transparent;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
 
         .cta-button:hover {
             background-color: white;
             color: #1a1a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         /* --- Scroll Down Indicator --- */
@@ -158,6 +182,7 @@
             font-size: 24px;
             z-index: 1;
             animation: bounce 2s infinite;
+            cursor: pointer;
         }
         
         @keyframes bounce {
@@ -170,6 +195,157 @@
             60% {
                 transform: translateY(-5px);
             }
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-section {
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #fff;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: left;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* --- About Section --- */
+        .about-section {
+            padding: 80px 20px;
+            background-color: #111;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-top: 0;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ccc;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
         }
         
         /* --- Media Query for Mobile --- */
@@ -190,22 +366,24 @@
             .nav-links li {
                 margin: 0 10px;
             }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
-
     </style>
 </head>
 <body>
 
     <div class="hero-container">
 
-        <nav>
+        <nav id="mainNav">
             <a href="#" class="nav-logo">Col Roberts Photography</a>
             <div class="nav-links">
                 <ul>
-                    <li><a href="#">Galleries</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Prints</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#gallery">Galleries</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#prints">Prints</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -218,14 +396,79 @@
                 Based in Kununurra, Col Roberts captures the timeless light, rugged textures, and profound spirit of Australia's last frontier.
             </blockquote>
             
-            <a href="#" class="cta-button">Explore the Collection</a>
+            <a href="#gallery" class="cta-button">Explore the Collection</a>
         </div>
 
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView()">
             &darr;
         </div>
 
     </div>
 
-    </body>
-</html>
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Featured Galleries</h2>
+        
+        <div class="gallery-grid">
+            <!-- Replace the image paths with your actual images once uploaded -->
+            <div class="gallery-item">
+                <img src="images/gallery1.jpg" alt="Kimberley Landscape">
+                <div class="gallery-caption">
+                    <h3>Kimberley Landscapes</h3>
+                    <p>Vast horizons and ancient formations</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="images/gallery2.jpg" alt="Kimberley Waterways">
+                <div class="gallery-caption">
+                    <h3>Waterways</h3>
+                    <p>Rivers and waterfalls of the north</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="images/gallery3.jpg" alt="Kimberley Wildlife">
+                <div class="gallery-caption">
+                    <h3>Wildlife</h3>
+                    <p>The unique fauna of the Kimberley</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="images/gallery4.jpg" alt="Kimberley Rock Art">
+                <div class="gallery-caption">
+                    <h3>Ancient Art</h3>
+                    <p>Indigenous rock art and cultural sites</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="images/gallery5.jpg" alt="Kimberley Aerial">
+                <div class="gallery-caption">
+                    <h3>Aerial Perspectives</h3>
+                    <p>The Kimberley from above</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="images/gallery6.jpg" alt="Kimberley Night Sky">
+                <div class="gallery-caption">
+                    <h3>Night Skies</h3>
+                    <p>Stars over the ancient landscape</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-image">
+            <!-- Replace with actual photographer image -->
+            <img src="images/col-roberts.jpg" alt="Col Roberts">
+        </div>
+        <div class="about-text">
+            <h2>About Col Roberts</h2>
+            <p>For over 20 years, Col Roberts has been documenting the raw beauty and ancient spirit of the Kimberley region. Based in Kununurra, his intimate knowledge of the land allows him to capture moments and perspectives that few ever witness.</p>
+            <p>Col's work has been featured in national galleries and international publications, earning recognition for its ability to convey the profound connection between the land and its timeless history.</p>
+            <p>Each photograph represents countless hours in the field, often in remote and challenging conditions, waiting for that perfect moment when light, landscape, an
