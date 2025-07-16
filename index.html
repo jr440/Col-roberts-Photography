@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Col Roberts Photography - The Ancient Soul of the Kimberley</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Base & Reset --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            color: white;
+            background-color: #1a1a1a; /* Fallback color */
+        }
+
+        /* --- Hero Section Container --- */
+        .hero-container {
+            height: 100vh; /* Full viewport height */
+            width: 100%;
+            
+            /* --- IMPORTANT: Replace this with your image --- */
+            background-image: url('https://images.unsplash.com/photo-1572979244242-b5e8995a563f?q=80&w=2070&auto=format&fit=crop'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Creates a nice parallax-like effect on scroll */
+
+            /* Flexbox for centering content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+            position: relative; /* Needed for positioning child elements like nav and scroll arrow */
+            overflow: hidden; /* Prevents scrollbars if content overflows slightly */
+        }
+        
+        /* A semi-transparent overlay to make text more readable */
+        .hero-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3); /* Adjust darkness (0.3 = 30% black) */
+        }
+
+        /* --- Top Navigation --- */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 300;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+        
+        /* --- Centered Content --- */
+        .hero-content {
+            position: relative; /* Ensures it appears above the overlay */
+            z-index: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem; /* Responsive font size */
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 10px 0 30px 0;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+        }
+
+        blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 600px; /* Prevents text from being too wide */
+            margin: 20px auto 40px auto;
+            border: none;
+            padding: 0;
+        }
+
+        /* --- Call to Action Button --- */
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            background-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: #1a1a1a;
+        }
+
+        /* --- Scroll Down Indicator --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            font-size: 24px;
+            z-index: 1;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* --- Media Query for Mobile --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            nav {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .nav-logo {
+                margin-bottom: 15px;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero-container">
+
+        <nav>
+            <a href="#" class="nav-logo">Col Roberts Photography</a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#">Galleries</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Prints</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1>The Ancient Soul of the Kimberley</h1>
+            <h2>Through the lens of Col Roberts</h2>
+            
+            <blockquote>
+                Based in Kununurra, Col Roberts captures the timeless light, rugged textures, and profound spirit of Australia's last frontier.
+            </blockquote>
+            
+            <a href="#" class="cta-button">Explore the Collection</a>
+        </div>
+
+        <div class="scroll-indicator">
+            &darr;
+        </div>
+
+    </div>
+
+    </body>
+</html>
