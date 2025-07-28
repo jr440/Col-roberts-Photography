@@ -171,14 +171,55 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* --- Store Section --- */
-        .store-section {
+        /* --- Scroll Down Indicator --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            font-size: 24px;
+            z-index: 1;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-section {
             padding: 80px 20px;
             background-color: #1a1a1a;
             text-align: center;
         }
 
-        .store-grid {
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #fff;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             grid-gap: 20px;
@@ -186,67 +227,110 @@
             margin: 0 auto;
         }
 
-        .store-item {
-            height: auto;
+        .gallery-item {
+            height: 300px;
             overflow: hidden;
             position: relative;
             border-radius: 4px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            background-color: #fff;
-            padding: 20px;
-            text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .store-item:hover {
+        .gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
 
-        .store-item img {
+        .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            transition: transform 0.5s ease;
         }
 
-        .store-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .gallery-item:hover img {
+            transform: scale(1.05);
         }
 
-        .store-item p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #1a1a1a;
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
             color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            border: 1px solid #1a1a1a;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: left;
         }
 
-        .buy-button:hover {
-            background-color: white;
-            color: #1a1a1a;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ccc;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* --- Media Query for Mobile --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            nav {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .nav-logo {
+                margin-bottom: 15px;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="hero-container">
+
         <nav id="mainNav">
             <a href="#" class="nav-logo">Col Roberts Photography</a>
             <div class="nav-links">
@@ -254,7 +338,6 @@
                     <li><a href="#birds">Birds</a></li>
                     <li><a href="#australian-wildlife">Australian Wildlife</a></li>
                     <li><a href="#international-wildlife">International Wildlife</a></li>
-                    <li><a href="#store">Store</a></li>
                 </ul>
             </div>
         </nav>
@@ -262,15 +345,18 @@
         <div class="hero-content">
             <h1>Birds and Wildlife</h1>
             <h2>Through the lens of Col Roberts</h2>
+            
             <blockquote>
                 Capturing the beauty and diversity of birds and wildlife from the Kimberley region to the world.
             </blockquote>
+            
             <a href="#birds" class="cta-button">Explore Birds</a>
         </div>
 
         <div class="scroll-indicator" onclick="document.getElementById('birds').scrollIntoView()">
             &darr;
         </div>
+
     </div>
 
     <!-- Birds Section -->
@@ -380,31 +466,6 @@
         </div>
     </section>
 
-    <!-- Store Section -->
-    <section id="store" class="store-section">
-        <h2 class="section-title">Store</h2>
-        <div class="store-grid">
-            <div class="store-item">
-                <img src="product1.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>High-quality print of an Australian bird.</p>
-                <a href="#" class="buy-button">Buy Now</a>
-            </div>
-            <div class="store-item">
-                <img src="product2.jpg" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>Beautiful wildlife photography print.</p>
-                <a href="#" class="buy-button">Buy Now</a>
-            </div>
-            <div class="store-item">
-                <img src="product3.jpg" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>Limited edition print of exotic wildlife.</p>
-                <a href="#" class="buy-button">Buy Now</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
@@ -415,11 +476,22 @@
                 <a href="#" aria-label="Email">Email</a>
             </div>
             <p>For print inquiries and commissions, please contact: <br>
-                <a href="mailto:info@colrobertsphotography.com">info@colrobertsphotography.com</a>
-            </p>
+            <a href="mailto:info@colrobertsphotography.com">info@colrobertsphotography.com</a></p>
             <p class="copyright">&copy; 2025 Col Roberts Photography. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Simple script to add background to nav when scrolling
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
 
 </body>
 </html>
