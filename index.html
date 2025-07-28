@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Col Roberts Photography - The Ancient Soul of the Kimberley</title>
+    <title>Col Roberts Photography - Birds and Wildlife</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +56,7 @@
 
         /* --- Top Navigation --- */
         nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
             padding: 20px 50px;
@@ -65,14 +65,10 @@
             justify-content: space-between;
             align-items: center;
             z-index: 2;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Add this class to nav when scrolling for better visibility */
-        .nav-scrolled {
             background-color: rgba(0, 0, 0, 0.8);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
+
         .nav-logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
@@ -175,55 +171,14 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* --- Scroll Down Indicator --- */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            font-size: 24px;
-            z-index: 1;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* --- Gallery Section --- */
-        .gallery-section {
+        /* --- Store Section --- */
+        .store-section {
             padding: 80px 20px;
             background-color: #1a1a1a;
             text-align: center;
         }
 
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 3px;
-            background-color: #fff;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .gallery-grid {
+        .store-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             grid-gap: 20px;
@@ -231,249 +186,222 @@
             margin: 0 auto;
         }
 
-        .gallery-item {
-            height: 300px;
+        .store-item {
+            height: auto;
             overflow: hidden;
             position: relative;
             border-radius: 4px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background-color: #fff;
+            padding: 20px;
+            text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .gallery-item:hover {
+        .store-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
 
-        .gallery-item img {
+        .store-item img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 20px;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-align: left;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
-
-        /* --- About Section --- */
-        .about-section {
-            padding: 80px 20px;
-            background-color: #111;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-
-        .about-image img {
-            width: 100%;
-            max-width: 400px;
             border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
         }
 
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
+        .store-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
 
-        .about-text h2 {
-            text-align: left;
-            margin-top: 0;
+        .store-item p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #333;
         }
 
-        .about-text p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: #0a0a0a;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            margin: 20px 0;
-        }
-
-        .social-links a {
+        .buy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1a1a1a;
             color: white;
-            margin: 0 10px;
-            font-size: 20px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            border: 1px solid #1a1a1a;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
 
-        .social-links a:hover {
-            color: #ccc;
-        }
-
-        .copyright {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888;
-        }
-        
-        /* --- Media Query for Mobile --- */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 1.2rem;
-            }
-            nav {
-                flex-direction: column;
-                padding: 20px;
-            }
-            .nav-logo {
-                margin-bottom: 15px;
-            }
-            .nav-links li {
-                margin: 0 10px;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
+        .buy-button:hover {
+            background-color: white;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
 
     <div class="hero-container">
-
         <nav id="mainNav">
             <a href="#" class="nav-logo">Col Roberts Photography</a>
             <div class="nav-links">
                 <ul>
-                    <li><a href="#gallery">Galleries</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#prints">Prints</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#birds">Birds</a></li>
+                    <li><a href="#australian-wildlife">Australian Wildlife</a></li>
+                    <li><a href="#international-wildlife">International Wildlife</a></li>
+                    <li><a href="#store">Store</a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="hero-content">
-            <h1>The Ancient Soul of the Kimberley</h1>
+            <h1>Birds and Wildlife</h1>
             <h2>Through the lens of Col Roberts</h2>
-            
             <blockquote>
-                Based in Kununurra, Col Roberts captures the timeless light, rugged textures, and profound spirit of Australia's last frontier.
+                Capturing the beauty and diversity of birds and wildlife from the Kimberley region to the world.
             </blockquote>
-            
-            <a href="#gallery" class="cta-button">Explore the Collection</a>
+            <a href="#birds" class="cta-button">Explore Birds</a>
         </div>
 
-        <div class="scroll-indicator" onclick="document.getElementById('gallery').scrollIntoView()">
+        <div class="scroll-indicator" onclick="document.getElementById('birds').scrollIntoView()">
             &darr;
         </div>
-
     </div>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-        <h2 class="section-title">Featured Galleries</h2>
+    <!-- Birds Section -->
+    <section id="birds" class="gallery-section">
+        <h2 class="section-title">Birds</h2>
         
         <div class="gallery-grid">
-            <!-- Using actual images from the repository -->
             <div class="gallery-item">
-                <img src="COLPIC1.jpeg" alt="Kimberley Landscape">
+                <img src="bird1.jpeg" alt="Australian Bird1">
                 <div class="gallery-caption">
-                    <h3>Kimberley Landscapes</h3>
-                    <p>Vast horizons and ancient formations</p>
+                    <h3>Australian Birds</h3>
+                    <p>Unique and colorful birds of Australia</p>
                 </div>
             </div>
-            
             <div class="gallery-item">
-                <img src="COLPIC2.jpeg" alt="Kimberley Waterways">
+                <img src="bird2.jpeg" alt="Australian Bird2">
                 <div class="gallery-caption">
-                    <h3>Waterways</h3>
-                    <p>Rivers and waterfalls of the north</p>
+                    <h3>Exotic Birds</h3>
+                    <p>Birds from around the world</p>
                 </div>
             </div>
-            
             <div class="gallery-item">
-                <img src="COLPIC3.jpeg" alt="Kimberley Wildlife">
+                <img src="bird2.jpeg" alt="Australian Bird3">
                 <div class="gallery-caption">
-                    <h3>Wildlife</h3>
-                    <p>The unique fauna of the Kimberley</p>
+                    <h3>Exotic Birds</h3>
+                    <p>Birds from around the world</p>
                 </div>
             </div>
-            
             <div class="gallery-item">
-                <img src="COLPIC4.jpeg" alt="Kimberley Rock Art">
+                <img src="bird2.jpeg" alt="Exotic Bird1">
                 <div class="gallery-caption">
-                    <h3>Ancient Art</h3>
-                    <p>Indigenous rock art and cultural sites</p>
+                    <h3>Exotic Birds</h3>
+                    <p>Birds from around the world</p>
                 </div>
             </div>
-            
             <div class="gallery-item">
-                <img src="COLPIC5.jpeg" alt="Kimberley Aerial">
+                <img src="bird2.jpeg" alt="Exotic Bird2">
                 <div class="gallery-caption">
-                    <h3>Aerial Perspectives</h3>
-                    <p>The Kimberley from above</p>
+                    <h3>Exotic Birds</h3>
+                    <p>Birds from around the world</p>
                 </div>
             </div>
-            
             <div class="gallery-item">
-                <img src="COLPIC6.jpeg" alt="Kimberley Night Sky">
+                <img src="bird2.jpeg" alt="Exotic Bird3">
                 <div class="gallery-caption">
-                    <h3>Night Skies</h3>
-                    <p>Stars over the ancient landscape</p>
+                    <h3>Exotic Birds</h3>
+                    <p>Birds from around the world</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="about-image">
-            <!-- Using one of the images for the photographer profile -->
-            <img src="COLPIC1.jpeg" alt="Col Roberts">
+    <!-- Australian Wildlife Section -->
+    <section id="australian-wildlife" class="gallery-section">
+        <h2 class="section-title">Australian Wildlife</h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="wildlife1.jpeg" alt="Snake1">
+                <div class="gallery-caption">
+                    <h3>Kangaroos</h3>
+                    <p>Iconic Australian wildlife</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="wildlife2.jpeg" alt="Snake2">
+                <div class="gallery-caption">
+                    <h3>Koalas</h3>
+                    <p>Gentle creatures of the Australian bush</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="wildlife2.jpeg" alt="Snake3">
+                <div class="gallery-caption">
+                    <h3>Koalas</h3>
+                    <p>Gentle creatures of the Australian bush</p>
+                </div>
+            </div>
         </div>
-        <div class="about-text">
-            <h2>About Col Roberts</h2>
-            <p>For over 20 years, Col Roberts has been documenting the raw beauty and ancient spirit of the Kimberley region. Based in Kununurra, his intimate knowledge of the land allows him to capture moments and perspectives that few ever witness.</p>
-            <p>Col's work has been featured in national galleries and international publications, earning recognition for its ability to convey the profound connection between the land and its timeless history.</p>
-            <p>Each photograph represents countless hours in the field, often in remote and challenging conditions, waiting for that perfect moment when light, landscape, and spirit align.
-            
-            But hes a tight ass and didnt round up 2 dollars for hard drives</p>
+    </section>
+
+    <!-- International Wildlife Section -->
+    <section id="international-wildlife" class="gallery-section">
+        <h2 class="section-title">International Wildlife</h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="wildlife3.jpeg" alt="African Elephant">
+                <div class="gallery-caption">
+                    <h3>African Elephants</h3>
+                    <p>Majestic giants of Africa</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="wildlife4.jpeg" alt="Polar Bear">
+                <div class="gallery-caption">
+                    <h3>Polar Bears</h3>
+                    <p>Survivors of the Arctic</p>
+                </div>
+                <div class="gallery-item">
+                <img src="wildlife4.jpeg" alt="Sloth">
+                <div class="gallery-caption">
+                    <h3>Polar Bears</h3>
+                    <p>Survivors of the Arctic</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="store-section">
+        <h2 class="section-title">Store</h2>
+        <div class="store-grid">
+            <div class="store-item">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>High-quality print of an Australian bird.</p>
+                <a href="#" class="buy-button">Buy Now</a>
+            </div>
+            <div class="store-item">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>Beautiful wildlife photography print.</p>
+                <a href="#" class="buy-button">Buy Now</a>
+            </div>
+            <div class="store-item">
+                <img src="product3.jpg" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>Limited edition print of exotic wildlife.</p>
+                <a href="#" class="buy-button">Buy Now</a>
+            </div>
         </div>
     </section>
 
@@ -487,22 +415,11 @@
                 <a href="#" aria-label="Email">Email</a>
             </div>
             <p>For print inquiries and commissions, please contact: <br>
-            <a href="mailto:info@colrobertsphotography.com">info@colrobertsphotography.com</a></p>
+                <a href="mailto:info@colrobertsphotography.com">info@colrobertsphotography.com</a>
+            </p>
             <p class="copyright">&copy; 2025 Col Roberts Photography. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Simple script to add background to nav when scrolling
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
-        });
-    </script>
 
 </body>
 </html>
